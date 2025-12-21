@@ -25,6 +25,5 @@ fn read_input() -> String {
 fn repl() {
     loop {
         shell_prompt();
-        read_input();
     }
 }
