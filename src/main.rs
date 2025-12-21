@@ -2,7 +2,8 @@
 use std::io::{self, Write};
 
 fn main() {
-    shell_prompt();
+    // shell_prompt();
+    repl()
 }
 
 fn shell_prompt() {
@@ -19,4 +20,11 @@ fn read_input() -> String {
     let trimmed_input = input.trim();
     let cmd_not_found = format!("{}: command not found", trimmed_input);
     cmd_not_found
+}
+
+fn repl() {
+    loop {
+        shell_prompt();
+        read_input();
+    }
 }
