@@ -2,7 +2,10 @@
 use std::io::{self, Write};
 
 fn main() {
-    // TODO: Uncomment the code below to pass the first stage
-    // print!("$ ");
-    // io::stdout().flush().unwrap();
+    shell_prompt();
+}
+
+fn shell_prompt() {
+    print!("$ ");
+    io::stdout().flush().unwrap();
 }
