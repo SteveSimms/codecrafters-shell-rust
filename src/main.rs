@@ -19,6 +19,9 @@ fn read_input() -> String {
         .expect("Failed to read line");
     let trimmed_input = input.trim();
     let cmd_not_found = format!("{}: command not found", trimmed_input);
+    if trimmed_input == "exit" {
+        std::process::exit(0);
+    }
     cmd_not_found
 }
 
