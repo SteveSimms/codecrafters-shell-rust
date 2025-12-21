@@ -17,12 +17,24 @@ fn read_input() -> String {
     io::stdin()
         .read_line(&mut input)
         .expect("Failed to read line");
-    let trimmed_input = input.trim();
-    let cmd_not_found = format!("{}: command not found", trimmed_input);
-    if trimmed_input == "exit" {
+    let cmd = input.trim();
+    let cmd_not_found = format!("{}: command not found", cmd);
+
+    if cmd == "exit" {
         std::process::exit(0);
     }
-    cmd_not_found
+
+    if cmd.starts_with("echo") {
+        // echo the input
+        let echo = cmd;
+        return format!("{}", echo);
+    }
+
+    if cmd != "echo" {
+        return cmd_not_found;
+    } else {
+        return String::new();
+    }
 }
 
 fn repl() {
