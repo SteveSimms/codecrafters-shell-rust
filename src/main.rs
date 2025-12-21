@@ -27,7 +27,10 @@ fn read_input() -> String {
     if cmd.starts_with("echo") {
         // echo the input
         let echo = cmd;
-        return format!("{}", echo);
+        //strips the echo prefix from command using pattern matching
+
+        let stripped_echo = echo.strip_prefix("echo").unwrap_or(&echo);
+        return format!("{}", stripped_echo);
     }
 
     if cmd != "echo" {
