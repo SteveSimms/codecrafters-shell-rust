@@ -16,7 +16,7 @@ fn read_input() -> String {
     let mut input = String::new();
     io::stdin()
         .read_line(&mut input)
-        .expect(": command not found");
+        .expect("Failed to read line");
     let trimmed_input = input.trim();
     let cmd_not_found = format!("{}: command not found", trimmed_input);
     cmd_not_found
