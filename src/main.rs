@@ -3,7 +3,8 @@ use std::io::{self, Write};
 
 enum Command {
     Exit,
-    Echo(String),    //carries the message to print
+    Echo(String), //carries the message to print
+    Type(String),
     Unknown(String), //Carries the unknown command name
 }
 
@@ -23,7 +24,12 @@ impl Command {
         } else if trimmed_input == "echo" {
             return Command::Echo("".to_string());
         }
-        // todo: handle type or any future commands here
+        // 4.: handle type or any future commands here
+
+        if let Some(arg) = trimmed_input.strip_prefix("type ") {
+            return Command::Type(arg.to_string());
+        }
+
         //3. Fallback
         Command::Unknown(trimmed_input.to_string())
     }
@@ -45,6 +51,14 @@ fn main() {
         match command {
             Command::Exit => std::process::exit(0),
             Command::Echo(msg) => println!("{}", msg),
+            // Handle the type command
+            Command::Type(cmd_name) => {
+                // Match against the string slice (&str)
+                match cmd_name.as_str() {
+                    "echo" | "exit" | "type" => println!("{} is a shell builtin", cmd_name),
+                    _ => println!("{}: not found", cmd_name), // Must always handle the default case
+                }
+            }
             Command::Unknown(cmd_name) => {
                 // Only print if the user actually typed something
                 if !cmd_name.is_empty() {
